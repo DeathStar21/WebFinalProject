@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+     <!-- font awesome cdn link  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+     <!-- custom css file link  -->
+     <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <script>
+        let http;
+        function send(){
+            http = new XMLHttpRequest();
+            http.onreadystatechange = show;
+            let user = document.getElementById("user").value;
+            let url = "getuser.php?firstname="+user;
+
+            http.open("GET",url);
+            http.send();
+        }
+        function show(){
+            
+            if(http.readyState==4 && http.status==200){
+                // console.log(http.responseText);
+                document.getElementById("showelement").innerHTML = http.responseText;
+            }
+        }
+    </script>
+</head>
+<body>
+  <header class="header">
+  <div class="flex">
+    <a href="#" class="logo">Pigmecafe</a>
+    <nav class="navbar">
+      <a href="adminedit.php">add products</a>
+      <a href="products.php">view products</a>
+      <a href="jsondata.php">view shopping</a>
+      <a href="get.html">view user</a>
+      <a href="cart.php">cart</a>
+      <a href="http://localhost/Projectnew/logout.php" >Logout</a>
+ </nav>
+    
+
+  </div>
+</header>
+
+<div class="container">
+  <h1 class="heading">Search User</h1>
+  <h1 class="heading"> Firstname : <input type="text" id="user" onblur="send()" style="color: white; background-color: rgb(115, 195, 244); font-size: 3rem "></h1>
+  <div id="showelement"></div>
+
+
+
+</div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+
